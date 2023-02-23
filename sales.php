@@ -93,7 +93,7 @@
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="barangmasuk.php">Barang Masuk</a>
-                                            <a class="nav-link" href="barangkeluar.php">Barang Keluar</a>
+                                            <a class="nav-link" href="BARANGKELUARR.php">Barang Keluar</a>
                                             <a class="nav-link" href="retur.php">Retur Barang</a>
                                             <a class="nav-link" href="sales.php">Daftar Sales</a>
                                         </nav>

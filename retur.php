@@ -215,7 +215,7 @@
                                                 <th>Tanggal</th>
                                                 <th>QTY</th>
                                                 <th>Status Barang</th>
-                                                <th>Sales</th>
+                                                <th>Penerima</th>
                                                 <th>Aksi</th>   
                                             </tr>
                                         </thead>
