@@ -217,6 +217,7 @@
                                                 <th>Nama_Barang</th>
                                                 <th>Jenis_Barang</th>
                                                 <th>Tanggal</th>
+                                                <th>Expired Tanggal</th>
                                                 <th>Penerima</th>
                                                 <th>QTY</th>
                                                 <th>Aksi</th>
@@ -257,12 +258,14 @@
                                             $jenisbarang =$data['jenisbarang'];
                                             $qty = $data['qty'];
                                             $keterangan = $data['penerima'];
+                                            $exp = $data['kadarluasa'];
                                         ?>
                                         <tr>
                                             <td><?=$i++?></td>
                                             <td><?=$namabarang;?></td>
                                             <td><?=$jenisbarang;?></td>
                                             <td><?=$tanggal;?></td>
+                                            <td><?=$exp;?></td>
                                             <td><?=$keterangan;?></td>
                                             <td><?=$qty;?></td>
                                             <td>
@@ -272,7 +275,7 @@
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$idbarang;?>">
                                             DELETE
                                             </button>
-                                            </td> -->
+                                            </td> 
                                         </tr>
                                         <!-- END Selesai Field Table -->
                                         <!-- Aksi CRUD -->
@@ -295,6 +298,7 @@
                                                 <input class="form-control py-4 mb-2" id="inputEmailAddress" name="jenisbarang" type="text"     placeholder="Jenis Barang"  value="<?=$jenisbarang;?>" required/>
                                                 <input class="form-control py-4 mb-2" id="inputEmailAddress" name="penerima"    type="text"     placeholder="Penerima"      value="<?=$keterangan;?>"/>
                                                 <input class="form-control py-4 mb-2" id="inputEmailAddress" name="qty"         type="number"   placeholder="Jumlah Stock"  value="<?=$qty;?>"required/>
+                                                <input  type="date"   name="kadarluasa"      class="form-control mb-2  "   placeholder="Kadarluasa" required value="<?=$exp;?>  />
                                                 <input type="hidden" name="idbarang" value="<?=$idbarang;?>">
                                                 <input type="hidden" name="idmasuk" value="<?=$idm;?>">
                                                 <button type="submit" class="btn btn-primary" name="updatebarangmasuk" >Submit</button>
@@ -402,7 +406,7 @@
                     </select>
                     <input  type="number"  name="qty"            class="form-control mb-2  "  placeholder="Quantity" required  />
                     <input  type="text"   name="penerima"       class="form-control mb-2  "   placeholder="Penerima" required  />
-                    <!-- <input  type="text"   name="harga"          class="form-control mb-2  "   placeholder="Hargabarang" required  /> -->
+                    <input  type="date"   name="kadarluasa"      class="form-control mb-2  "   placeholder="Kadarluasa" required  />
                     <button type="submit" name="barangmasuk"    class="btn btn-primary" >Submit</button>
                     </div>
                     <!-- Modal footer -->

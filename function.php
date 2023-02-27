@@ -6,7 +6,7 @@ $conn = mysqli_connect("localhost:3308","root","","db_stockcosmetic");
 if(isset($_POST['registrasi'])){
     $email = $_POST['email'];
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
     $role = $_POST['role'];
     // Cocokan dengan database, cari data
     $cekdatabase = mysqli_query($conn,"INSERT INTO login (username,email,password,role) VALUES ('$username','$email','$password','$role')");
@@ -43,17 +43,16 @@ if(isset($_POST['registrasi'])){
 //             $_SESSION['log'] = 'Logged';
 //             $_SESSION['role'] = 'manager';
 //             header('location: homemanager.php');
-//         // } else if ($role == 'kepalagudang') {
-//         //     //Kalau bukan manager
-//         //     $_SESSION['log'] = 'Logged';
-//         //     $_SESSION['role'] = 'kepalagudang';
-//         //     header('location: homegudang.php');
-//         // } else {
-//         //     echo 'Data tidak ada';
-//         // }
+//         } else if ($role == 'kepalagudang') {
+//             //Kalau bukan manager
+//             $_SESSION['log'] = 'Logged';
+//             $_SESSION['role'] = 'kepalagudang';
+//             header('location: homegudang.php');
+//         } else {
+//             echo 'Data tidak ada';
+//         }
 //         }
 //     }
-// };
 
 // Menambah Data Sales 
 if(isset($_POST['buttonsales'])){
@@ -134,13 +133,14 @@ if(isset($_POST['barangmasuk'])){
     $penerima = $_POST['penerima'];
     $qty = $_POST['qty'];
     $info = $_POST['keterangan'];
+    $exp = $_POST['kadarluasa'];
    
     $cekstocksekarang = mysqli_query($conn,"SELECT * FROM stock WHERE idbarang='$barangnya'"); 
     $ambildatanya = mysqli_fetch_array($cekstocksekarang);
     $stocksekarang= $ambildatanya['stock'];
     $tambahkanstocksekarangdenganquantity = $stocksekarang+$qty;
 
-    $addtomasuk = mysqli_query($conn,"INSERT INTO masuk (idbarang,penerima,qty) VALUES ('$barangnya','$penerima','$qty')");
+    $addtomasuk = mysqli_query($conn,"INSERT INTO masuk (idbarang,kadarluasa,penerima,qty) VALUES ('$barangnya','$exp','$penerima','$qty')");
     $updatestokmasuk = mysqli_query($conn," UPDATE stock set stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
     if($addtomasuk && $updatestokmasuk){
         header('location:barangmasuk.php');
@@ -359,6 +359,7 @@ if(isset($_POST['updatebarangmasuk'])){
     $idm = $_POST['idmasuk']; //iddata
     $idbarang = $_POST['idbarang']; //idbarang
     $qty = $_POST['qty'];
+    $exp = $_POST['kadarluasa'];
     $keterangan = $_POST['penerima'];
     $lihatstock = mysqli_query($conn,"select * from stock where idbarang='$idbarang'"); //lihat stock barang itu saat ini
     $stocknya = mysqli_fetch_array($lihatstock); //ambil datanya
@@ -374,7 +375,7 @@ if(isset($_POST['updatebarangmasuk'])){
         $tambahistock = $stockskrg+$hitungselisih;
 
         $queryx = mysqli_query($conn,"UPDATE stock set stock='$tambahistock' WHERE idbarang='$idbarang'");
-        $updatedata1 = mysqli_query($conn,"UPDATE masuk set qty='$qty',penerima='$keterangan' WHERE idmasuk='$idm'");
+        $updatedata1 = mysqli_query($conn,"UPDATE masuk set qty='$qty',penerima='$keterangan',kadarluasa='$exp' WHERE idmasuk='$idm'");
         
         //cek apakah berhasil
         if ($updatedata1 && $queryx){
@@ -395,7 +396,7 @@ if(isset($_POST['updatebarangmasuk'])){
 
         $query1 = mysqli_query($conn,"UPDATE stock set stock='$kurangistock' where idbarang='$idbarang'");
 
-        $updatedata = mysqli_query($conn,"UPDATE masuk set  qty='$qty', penerima='$keterangan' WHERE idmasuk='$idm'");
+        $updatedata = mysqli_query($conn,"UPDATE masuk set  qty='$qty', penerima='$keterangan',kadarluasa='$exp' WHERE idmasuk='$idm'");
         
         //cek apakah berhasil
         if ($query1 && $updatedata){

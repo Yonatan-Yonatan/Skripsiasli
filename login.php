@@ -27,38 +27,17 @@ if (isset($_POST['login'])) {
             $_SESSION['log'] = 'Logged';
             $_SESSION['role'] = 'manager';
             header('location: homemanager.php');
-        } else if ($role == 'gudang') {
+        } else if ($role == 'kepalagudang') {
             //Kalau bukan manager
             $_SESSION['log'] = 'Logged';
-            $_SESSION['role'] = 'gudang';
+            $_SESSION['role'] = 'kepalagudang';
             header('location:homegudang.php');
         } else {
             echo 'Data tidak ada';
         }
     }
 };
-//Check login Kepala Gudang, terdaftar atau tidak
-// if(isset($_POST['login'])){
-//     $email = $_POST['email'];
-//     $username = $_POST['username'];
-//     $password = $_POST['password'];
-//     $role = $_POST['role'];
-//     // Cocokan dengan database, cari data
-//     $cekdatabase = mysqli_query($conn,"SELECT * FROM login where role='$username' and password='$password'");
-//     // Hitung jumlah data
-//     $hitung = mysqli_num_rows($cekdatabase);
-//     if($hitung>0){
-//         $_SESSION['log']= 'TRUE';
-//         header('location:barangmasukgudang.php');
-
-//     }else{
-//         header('location:login.php');
-//     }
-
-// }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
