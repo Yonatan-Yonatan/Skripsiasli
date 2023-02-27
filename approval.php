@@ -1,6 +1,6 @@
 <?php
-    include 'function.php';
-    include 'cek.php';
+     include 'function.php';
+     include 'cek.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="css/custom.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="./css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"> 
             <a class="navbar-brand" href="indexx.php">Cosmetic Modern</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -67,22 +66,9 @@
                                     <a class="nav-link" href="laporanbarangmasuk.php">Laporan  Barang Masuk</a>
                                     <a class="nav-link" href="laporanstockbarangkeluar.php">Laporan Barang Keluar</a>
                                     <a class="nav-link" href="laporanstockgudang.php">Laporan Barang Gudang</a>
+                                    <a class="nav-link" href="laporanharga.php">Laporan Barang Gudang</a>
                                 </nav>
                             </div>
-                            <!-- Req Barang -->
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsreq" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Req Barang
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsreq" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="reqbarang.php">Req Order Barang </a>
-                                    <a class="nav-link" href="approval.php">Approval Barang</a>
-                                    <!-- <a class="nav-link" href="#!">Laporan Barang Gudang</a> -->
-                                </nav>
-                            </div>
-                            <!-- End Req Barang -->
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Master Main
@@ -92,14 +78,13 @@
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                         Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="login.php">Login</a>
                                             <a class="nav-link" href="register.php">Register</a>
-                                            <a class="nav-link" href="logout.php">logout</a>
-                                            <!-- <a class="nav-link" href="password.html">Forgot Password</a> -->
+                                            <a class="nav-link" href="logout.php">Log Out</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -136,7 +121,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">List Harga Barang</h1>
+                        <h1 class="mt-4">Approval  Barang</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
@@ -200,72 +185,42 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_1">
-                                 Tambah barang
-                            </button>
-                            <a href="laporanstockgudang.php" id="pindahexport" class="btn btn-info">Exportdata</a>
-                            <i class="fas fa-table mr-1"></i>
-                            Data Harga Barang Cosmetic Modern
+                                <!-- Button to Open the Modal -->
+                                <!-- <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#myModal">
+                                 Tambah Order Barang 
+                                </button> -->
+                                <!-- End Notifikasi warning -->
+                                <a href="laporanbarangmasuk.php" id="#!" class="btn btn-info">Cetak data</a>
+                                <br>
+                                <!-- Validasi Tanggal -->
+                                <br>
+                                <form method="POST">
+                                    <input type="date" name="tglmulai" class="form-control" placeholder="Tanggal Masuk">
+                                    <br>
+                                    <input type="date" name="tglselesai" class="form-control">
+                                    <br>
+                                    <button type="submit" name="filter" class="btn btn-info">Cari Tanggal</button>
+                                </form>
+                                <br>
+                                <!-- End Validasi Tanggal -->
+                                <!-- end Button to Open the Modal  -->
+                                <i class="fas fa-table mr-1"></i>
+                                Data Stock Barang  Masuk Cosmetic Modern
                             </div>
                             <div class="card-body">
-                            <!-- Notifikasi Danger-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock <5");
-                                while($fetch=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $fetch['namabarang'];
-                                    $jumlah = $fetch['stock'];
-                                
-                                ?>
-                            <div class="alert alert-danger alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Woy!</strong> Mohon dilihat <?=$barang;?> tinggal segiini <?=$jumlah;?>
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi Danger -->
-                                <!-- Notifikasi Warning-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock <20");
-                                while($fetch=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $fetch['namabarang'];
-                                    $jumlah = $fetch['stock'];
-                                
-                                ?>
-                            <div class="alert alert-warning alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Warning!</strong> Mohon dilihat <?=$barang;?> tinggal segiini <?=$jumlah;?>
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi warning -->
-                                <!-- Notifikasi succes-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock >20");
-                                while($_POST=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $_POST['namabarang'];
-                                    $jumlah = $_POST['stock'];
-                                
-                                ?>
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Success!</strong> Barang masuk yaitu <?=$barang;?> dengan jumlah <?=$jumlah;?>.
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi succes -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Id Barang</th>
-                                                <th>Nama Barang</th>
-                                                <th>jenis Barang</th>
-                                                <th>Stock</th>
-                                                <th>Gambar</th>
-                                                <th>Aksi</th>
+                                                <!-- <th>Id_MasukBarang</th> -->
+                                                <th>Id Masuk</th>
+                                                <th>Nama_Barang</th>
+                                                <th>Jenis_Barang</th>
+                                                <th>Tanggal</th>
+                                                <th>Penerima</th>
+                                                <th>QTY</th>
+                                                <th>Status</th>
+                                                <th>AKSi</th>
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -281,94 +236,76 @@
                                         <!-- Mulai Field Table -->
                                         <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock");
+                                        // Fungsi Filter tanggal
+                                        if(isset($_POST['filter'])){
+                                            $mulaitanggal = $_POST['tglmulai'];
+                                            $selesaitanggal = $_POST['tglselesai'];
+                                            if($mulaitanggal!=null || $selesaitanggal!=null){
+                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM masuk m, stock s WHERE s.idbarang = m.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
+                                            }else{
+                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM masuk m, stock s WHERE s.idbarang = m.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
+                                            }
+                                        }
+                                        else{
+                                            $ambilsemuadatastock = mysqli_query ($conn,"SELECT * FROM req r, stock s WHERE s.idbarang = r.idbarang");
+                                        } 
                                         $i=1;
                                         while($data=mysqli_fetch_array($ambilsemuadatastock)){
-                                            $namabarang = $data['namabarang'];
-                                            // $keterangan = $data['keterangan'];
-                                            $stock = $data['stock'];
-                                            $jenisbarang =$data['jenisbarang'];
                                             $idbarang = $data['idbarang'];
-
-                                            // Cek jika gambar tidak ada
-                                            $image = $data['gambar']; //ambil gambar
-                                            if($image == null){
-                                            // Jika tidak ada gambar
-                                            $img = 'Tidak ada photo';
-                                            }else{
-                                            // JIka ada gambar
-                                            $img= '<img src="img/'.$image.'" class="zoomable">';
-                                            }
+                                            $idm = $data['idmasuk'];
+                                            $tanggal = $data['tanggal'];
+                                            $namabarang = $data['namabarang'];
+                                            $jenisbarang =$data['jenisbarang'];
+                                            $qty = $data['qty'];
+                                            $keterangan = $data['penerima'];
+                                            $status = $data['status'];
                                         ?>
                                         <tr>
-                                            <td><?=$i++;?></td>
+                                            <td><?=$i++?></td>
                                             <td><?=$namabarang;?></td>
                                             <td><?=$jenisbarang;?></td>
-                                            <td><?=$stock;?></td>
-                                            <td><?=$img;?></td>
+                                            <td><?=$tanggal;?></td>
+                                            <td><?=$keterangan;?></td>
+                                            <td><?=$qty;?></td>
+                                            <td><?php
+                                            if($status == 0) {
+                                                echo "Menunggu persetujuan" ; 
+                                            }elseif ($status == 1){
+                                                echo "Disetujui";
+                                            }elseif ($status == 2){
+                                                echo "Tidak disetujui";
+                                            }
+                                            ?></td>   
                                             <td>
-                                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit<?=$idbarang;?>">
-                                            Upload
-                                            </button> -->
-                                            <button type="button" class="btn btn-warning mb-4" data-toggle="modal" data-target="#edit<?=$idbarang;?>">
-                                            EDIT
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acc<?=$idbarang;?>">
+                                            Setuju
                                             </button>
-                                            <button type="button" class="btn btn-danger mb-4" data-toggle="modal" data-target="#delete<?=$idbarang;?>">
-                                            DELETE
-                                            </td>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#decline<?=$idbarang;?>">
+                                            Tidak Setuju
+                                            </button>
+                                            </td> 
                                         </tr>
-                                         <!-- Modal stock Gudang -->
-                                                <!-- The  Tambah barang Modal -->
-                                            <div class="modal fade" id="_1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                <h4 class="modal-title">Tambah Barang</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <!-- Modal body -->
-                                                <!-- Content 1 -->
-                                                <form method="POST" enctype="multipart/form-data">
-                                                <div class="modal-body">
-                                                <div class="form-group">
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="namabarang"  type="text"     placeholder="Nama Barang"  value="" required/>
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="jenisbarang" type="text"     placeholder="Jenis Barang" value="" required/>
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="stock"       type="number"   placeholder="Jumlah Stock"  value=""required/>
-                                                <input type="file" name="file" class="form-control mb-2">
-                                                <button type="submit" class="btn btn-primary mt-4" name="addnewbarang" >Submit</button>
-                                                </div>
-                                                </div>
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                            </div>
-                                        </div>
                                         <!-- END Selesai Field Table -->
                                         <!-- Aksi CRUD -->
                                         <!-- Modal stock Gudang -->
                                                 <!-- The  Edit Modal -->
-                                                <div class="modal fade" id="edit<?=$idbarang;?>">
+                                                <div class="modal fade" id="acc<?=$idbarang;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                <h4 class="modal-title">Edit Barang</h4>
+                                                <h4 class="modal-title">Status Barang</h4>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
                                                 <!-- Modal body -->
                                                 <!-- Content 1 -->
-                                                <form method="POST" enctype="multipart/form-data">
+                                                <form method="post">
                                                 <div class="modal-body">
                                                 <div class="form-group">
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="namabarang"  type="text"     placeholder="Nama Barang"  value="<?=$namabarang;?>" required/>
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="jenisbarang" type="text"     placeholder="Jenis Barang" value="<?=$jenisbarang;?>" required/>
-                                                <input type="file"name="file" class="form-control" >
-                                                <input type="hidden" name="idbarang" value="<?=$idbarang;?>">
-                                                <button type="submit" class="btn btn-primary" name="updatebarang" >Submit</button>
+                                                Apakah anda yakin ingin menambah Barang ini <?=$namabarang;?> Jenis <?=$jenisbarang;?> dengan jumlah <?=$qty;?>
+                                                <input type="hidden" name="idmasuk" value="<?=$idm;?>">
+                                                <br>
+                                                <button type="submit" class="btn btn-primary" name="approval" >Submit</button>
                                                 </div>
                                                 </div>
                                                 <!-- Modal footer -->
@@ -381,7 +318,7 @@
                                         </div>
                                                 <!-- Modal stock Gudang -->
                                                 <!-- The  delete Modal -->
-                                                <div class="modal fade" id="delete<?=$idbarang;?>">
+                                                <div class="modal fade" id="decline<?=$idbarang;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <!-- Modal Header -->
@@ -393,11 +330,11 @@
                                                 <!-- Content 1 -->
                                                 <form method="POST">
                                                 <div class="modal-body mb-2">
-                                                Apakah anda yakin ingin menghapus Barang <?=$namabarang;?> Jenis <?=$jenisbarang;?> dengan <?=$stock;?>?
-                                                <input type="hidden" name="idbarang"    value="<?=$idbarang;?>">
+                                                Apakah anda  ingin  Menolak menambah Barang ini <?=$namabarang;?> Jenis <?=$jenisbarang;?> dengan jumlah <?=$qty;?>
+                                                <input type="hidden" name="idmasuk" value="<?=$idm;?>">
                                                 <br>
                                                 <br>
-                                                <button type="submit" class="btn btn-danger" name="hapusbarang" >Hapus</button>
+                                                <button type="submit" class="btn btn-danger" name="tolakbarang" >Menolak</button>
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                                 </div>
                                                 </div>

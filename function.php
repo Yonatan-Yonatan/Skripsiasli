@@ -594,4 +594,51 @@ if(isset($_POST['hapusbarangmasuk'])){
          <meta http-equiv='refresh' content='1; url= indexx.php'/> ";
         }
 };
+
+// Req order Barang Barang Masuk
+
+if(isset($_POST['req'])){
+    $barangnya = $_POST['barangnya'];
+    $penerima = $_POST['penerima'];
+    $qty = $_POST['qty'];
+    $cekreq = mysqli_query($conn,"INSERT INTO req (idbarang,penerima,qty) VALUES ('$barangnya','$penerima','$qty')");
+    // die(mysqli_error($conn));
+    if($cekreq){
+        // berhasil
+        header("Location:reqbarang.php");
+    }else{
+        header("Location:indexx.php");
+    }
+}
+
+// Req Approval Barang 1
+if(isset($_POST['approval'])){
+    // $barangnya = $_POST['barangnya'];
+    // $penerima = $_POST['penerima'];
+    $idmasuk = $_POST['idmasuk'];
+    // $qty = $_POST['qty'];
+    $cekreq = mysqli_query($conn,"UPDATE req SET status=1  WHERE idmasuk='$idmasuk'");
+    // die(mysqli_error($conn));
+    if($cekreq){    
+        // berhasil
+        header("Location:approval.php");
+    }else{
+        header("Location:indexx.php");
+    }
+}
+// Req Approval Barang 2
+if(isset($_POST['tolakbarang'])){
+    // $barangnya = $_POST['barangnya'];
+    // $penerima = $_POST['penerima'];
+    $idmasuk = $_POST['idmasuk'];
+    // $qty = $_POST['qty'];
+    $cekreq = mysqli_query($conn,"UPDATE req SET status=2  WHERE idmasuk='$idmasuk'");
+    // die(mysqli_error($conn));
+    if($cekreq){
+        // berhasil
+        header("Location:approval.php");
+    }else{
+        header("Location:indexx.php");
+    }
+}
 ?>
