@@ -206,7 +206,7 @@ if(isset($_POST['barangkeluar'])){
         // Jika barang tidak cukup untuk keluar
         echo'
         <script>
-            alert("Sebentar barang stock tidak mencukupi silahkan check lagi !");
+            alert("Sebentar barang stock tidak mencukupi silahkan check lagi yaa !");
             window.location.href = "BARANGKELUARR.php"; 
         </script>';
     }
