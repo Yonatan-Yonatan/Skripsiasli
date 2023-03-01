@@ -241,9 +241,9 @@
                                             $mulaitanggal = $_POST['tglmulai'];
                                             $selesaitanggal = $_POST['tglselesai'];
                                             if($mulaitanggal!=null || $selesaitanggal!=null){
-                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM masuk m, stock s WHERE s.idbarang = m.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
+                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM  req r, stock s WHERE s.idbarang = r.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
                                             }else{
-                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM masuk m, stock s WHERE s.idbarang = m.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
+                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM  req r, stock s WHERE s.idbarang = r.idbarang AND tanggal BETWEEN '$mulaitanggal' AND DATE_ADD('$selesaitanggal',INTERVAL 1 DAY) ORDER BY idmasuk DESC");
                                             }
                                         }
                                         else{
@@ -277,10 +277,10 @@
                                             }
                                             ?></td>   
                                             <td>
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acc<?=$idbarang;?>">
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acc<?=$idm;?>">
                                             Setuju
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#decline<?=$idbarang;?>">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#decline<?=$idm;?>">
                                             Tidak Setuju
                                             </button>
                                             </td> 
@@ -289,7 +289,7 @@
                                         <!-- Aksi CRUD -->
                                         <!-- Modal stock Gudang -->
                                                 <!-- The  Edit Modal -->
-                                                <div class="modal fade" id="acc<?=$idbarang;?>">
+                                                <div class="modal fade" id="acc<?=$idm;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <!-- Modal Header -->
@@ -318,7 +318,7 @@
                                         </div>
                                                 <!-- Modal stock Gudang -->
                                                 <!-- The  delete Modal -->
-                                                <div class="modal fade" id="decline<?=$idbarang;?>">
+                                                <div class="modal fade" id="decline<?=$idm;?>">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <!-- Modal Header -->

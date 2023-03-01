@@ -615,9 +615,9 @@ if(isset($_POST['req'])){
 if(isset($_POST['approval'])){
     // $barangnya = $_POST['barangnya'];
     // $penerima = $_POST['penerima'];
-    $idmasuk = $_POST['idmasuk'];
+    $idm = $_POST['idmasuk'];
     // $qty = $_POST['qty'];
-    $cekreq = mysqli_query($conn,"UPDATE req SET status=1  WHERE idmasuk='$idmasuk'");
+    $cekreq = mysqli_query($conn,"UPDATE req SET status=1 WHERE  idmasuk='$idm'");
     // die(mysqli_error($conn));
     if($cekreq){    
         // berhasil
@@ -630,9 +630,9 @@ if(isset($_POST['approval'])){
 if(isset($_POST['tolakbarang'])){
     // $barangnya = $_POST['barangnya'];
     // $penerima = $_POST['penerima'];
-    $idmasuk = $_POST['idmasuk'];
+    $idm = $_POST['idmasuk'];
     // $qty = $_POST['qty'];
-    $cekreq = mysqli_query($conn,"UPDATE req SET status=2  WHERE idmasuk='$idmasuk'");
+    $cekreq = mysqli_query($conn,"UPDATE req SET status=2  WHERE  idmasuk='$idm'");
     // die(mysqli_error($conn));
     if($cekreq){
         // berhasil

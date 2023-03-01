@@ -13,6 +13,7 @@
         <title>Dashboard - SB Admin</title>
         <link href="css/custom.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -161,9 +162,9 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
+                                    <div class="card-body">Notifikasi Barang Sukses Masuk</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="notif.php">Lihat Lebih Detail</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -214,7 +215,6 @@
                                 while($fetch=mysqli_fetch_array($ambilsemuadatastock)){
                                     $barang = $fetch['namabarang'];
                                     $jumlah = $fetch['stock'];
-                                
                                 ?>
                             <div class="alert alert-danger alert-dismissible fade show">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -240,22 +240,6 @@
                                 };
                                 ?>
                                 <!-- End Notifikasi warning -->
-                                <!-- Notifikasi succes-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock >20");
-                                while($_POST=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $_POST['namabarang'];
-                                    $jumlah = $_POST['stock'];
-                                
-                                ?>
-                            <div class="alert alert-success alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Success!</strong> Barang masuk yaitu <?=$barang;?> dengan jumlah <?=$jumlah;?>.
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi succes -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
