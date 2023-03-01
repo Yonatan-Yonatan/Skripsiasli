@@ -96,10 +96,15 @@ if(isset($_POST['addnewbarang'])){
             move_uploaded_file($file_tmp,'img/'.$image);
                 $addtotable = mysqli_query($conn,"INSERT INTO stock (namabarang,jenisbarang,stock,gambar) VALUES ('$namabarang','$jenisbarang','$stock','$image')");
             if($addtotable){
-                header('location:indexx.php'); 
+                echo'<script>
+                alert("Barang Sukses Masuk");
+                window.location.href = "indexx.php"
+                </script>';
              }else{
-                 echo "Error";
-                 header('location:indexx.php');
+                echo'<script>
+                alert("Barang tidak bisa masuk silahkan check lagi");
+                window.location.href = "indexx.php"
+                </script>';
                 }
             }else{
                 // Jika filenya >= 1,5 mb
@@ -143,7 +148,10 @@ if(isset($_POST['barangmasuk'])){
     $addtomasuk = mysqli_query($conn,"INSERT INTO masuk (idbarang,kadarluasa,penerima,qty) VALUES ('$barangnya','$exp','$penerima','$qty')");
     $updatestokmasuk = mysqli_query($conn," UPDATE stock set stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
     if($addtomasuk && $updatestokmasuk){
-        header('location:barangmasuk.php');
+        echo'<script>
+        alert("Sukses Memasukan Barang !");
+        window.location.href = "barangmasuk.php"
+        </script>';
     } else {
         echo 'gagal';
         header('location:indexx.php');
