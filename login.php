@@ -21,19 +21,34 @@ if (isset($_POST['login'])) {
             // Kalau dia owner
             $_SESSION['log'] = 'Logged';
             $_SESSION['role'] = 'owner';
-            header('location: indexx.php'); //halaman utama
+            // header('location: indexx.php'); //halaman utama
+            echo'<script>
+            alert("Selamat Datang Owner !!");
+            window.location.href = "indexx.php"
+            </script>';
         } else if ($role == 'manager') {
             // Kalau bukan owner
             $_SESSION['log'] = 'Logged';
             $_SESSION['role'] = 'manager';
-            header('location: homemanager.php');
+            // header('location: homemanager.php');
+            echo'<script>
+            alert("Selamat Datang Manager !!");
+            window.location.href = "homemanager.php"
+            </script>';
         } else if ($role == 'kepalagudang') {
             //Kalau bukan manager
             $_SESSION['log'] = 'Logged';
             $_SESSION['role'] = 'kepalagudang';
-            header('location:homegudang.php');
+            // header('location:homegudang.php');
+            echo'<script>
+            alert("Selamat Datang Kepala gudang,semoga harimu menyenangkan !!");
+            window.location.href = "homekepalagudang.php"
+            </script>';
         } else {
-            echo 'Data tidak ada';
+            echo'<script>
+            alert("Data Tidak ditemukan !!");
+            window.location.href = "login.php"
+            </script>';
         }
     }
 };

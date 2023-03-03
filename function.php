@@ -258,7 +258,10 @@ if(isset($_POST['updatehargabarang'])){
     $hargabarang =$_POST['Harga'];
     $update = mysqli_query($conn,"UPDATE stock set namabarang='$namabarang',jenisbarang='$jenisbarang',Harga='$hargabarang' WHERE idbarang='$idbarang'");
     if($update){
-        header('location:stockharga.php');
+        echo'<script>
+        alert(" Selamat Harga barang Sudah ter-input!");
+        window.location.href = "stockharga.php"
+        </script>';
     } else {
         echo 'gagal';
         header('location:indexx.php');
@@ -290,10 +293,10 @@ if(isset($_POST['hargabarang'])){
 
     $addtotable = mysqli_query($conn,"INSERT INTO stock (namabarang,jenisbarang,harga) VALUES ('$namabarang','$jenisbarang','$harga')");
     if($addtotable){
-       header('location:.php'); 
+       header('location :stockharga.php');
     }else{
         echo "Error";
-        header('location:index.php');
+        header('location:indexx.php');
     }
 }
 // Menghapus Barang stock gudang
@@ -629,7 +632,10 @@ if(isset($_POST['approval'])){
     // die(mysqli_error($conn));
     if($cekreq){    
         // berhasil
-        header("Location:approval.php");
+        echo'<script>
+        alert(" Selamat Barang Sudah di approal, klick tombol ok untuk melanjutkan ");
+        window.location.href = "stockharga.php"
+        </script>';
     }else{
         header("Location:indexx.php");
     }
@@ -644,7 +650,11 @@ if(isset($_POST['tolakbarang'])){
     // die(mysqli_error($conn));
     if($cekreq){
         // berhasil
-        header("Location:approval.php");
+        // header("Location:approval.php");
+        echo'<script>
+        alert(" Status Barang ditolah, Silahkan klick tombol ok untuk melanjutkan ");
+        window.location.href = "approval.php"
+        </script>';
     }else{
         header("Location:indexx.php");
     }
