@@ -1,8 +1,6 @@
 <?php
     include 'function.php';
     include 'cek.php';
-    // session_start();
-   	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Faktur</title>
         <link href="css/custom.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -140,7 +138,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">List Harga Barang</h1>
+                        <h1 class="mt-4">Faktur Barang</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
@@ -205,52 +203,20 @@
                         <div class="card mb-4">
                             <div class="card-header">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#_1">
-                                 Tambah barang
+                                 Tambah Faktur
                             </button>
                             <a href="laporanstockgudang.php" id="pindahexport" class="btn btn-info">Exportdata</a>
                             <i class="fas fa-table mr-1"></i>
                             Data Harga Barang Cosmetic Modern
                             </div>
                             <div class="card-body">
-                            <!-- Notifikasi Danger-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock <5");
-                                while($fetch=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $fetch['namabarang'];
-                                    $jumlah = $fetch['stock'];
-                                ?>
-                            <div class="alert alert-danger alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Woy!</strong> Mohon dilihat <?=$barang;?> tinggal segiini <?=$jumlah;?>
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi Danger -->
-                                <!-- Notifikasi Warning-->
-                            <?php 
-                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock WHERE stock <20");
-                                while($fetch=mysqli_fetch_array($ambilsemuadatastock)){
-                                    $barang = $fetch['namabarang'];
-                                    $jumlah = $fetch['stock'];
-                                
-                                ?>
-                            <div class="alert alert-warning alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Warning!</strong> Mohon dilihat <?=$barang;?> tinggal segiini <?=$jumlah;?>
-                            </div>
-                                <?php 
-                                };
-                                ?>
-                                <!-- End Notifikasi warning -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Id Barang</th>
-                                                <th>Nama Barang</th>
-                                                <th>jenis Barang</th>
-                                                <th>Stock</th>
+                                                <th>Id faktur</th>
+                                                <th>Supplier</th>
+                                                <th>Tanggal</th>
                                                 <th>Gambar</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -268,15 +234,12 @@
                                         <!-- Mulai Field Table -->
                                         <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn,"SELECT * FROM stock");
+                                        $ambilsemuadatafaktur = mysqli_query($conn,"SELECT * FROM faktur");
                                         $i=1;
-                                        while($data=mysqli_fetch_array($ambilsemuadatastock)){
-                                            $namabarang = $data['namabarang'];
-                                            // $keterangan = $data['keterangan'];
-                                            $stock = $data['stock'];
-                                            $jenisbarang =$data['jenisbarang'];
-                                            $idbarang = $data['idbarang'];
-
+                                        while($data=mysqli_fetch_array($ambilsemuadatafaktur)){
+                                            $idfaktur = $data['idfaktur'];
+                                            $namausaha = $data['supplier'];
+                                            $tanggal = $data['tanggal'];
                                             // Cek jika gambar tidak ada
                                             $image = $data['gambar']; //ambil gambar
                                             if($image == null){
@@ -289,9 +252,8 @@
                                         ?>
                                         <tr>
                                             <td><?=$i++;?></td>
-                                            <td><?=$namabarang;?></td>
-                                            <td><?=$jenisbarang;?></td>
-                                            <td><?=$stock;?></td>
+                                            <td><?=$namausaha;?></td>
+                                            <td><?=$tanggal;?></td>
                                             <td><?=$img;?></td>
                                             <td>
                                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit<?=$idbarang;?>">
@@ -304,36 +266,7 @@
                                             DELETE
                                             </td>
                                         </tr>
-                                         <!-- Modal stock Gudang -->
-                                                <!-- The  Tambah barang Modal -->
-                                            <div class="modal fade" id="_1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                <h4 class="modal-title">Tambah Barang</h4>
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <!-- Modal body -->
-                                                <!-- Content 1 -->
-                                                <form method="POST" enctype="multipart/form-data">
-                                                <div class="modal-body">
-                                                <div class="form-group">
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="namabarang"  type="text"     placeholder="Nama Barang"  value="" required/>
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="jenisbarang" type="text"     placeholder="Jenis Barang" value="" required/>
-                                                <input class="form-control py-4 mb-2" id="inputEmailAddress" name="stock"       type="number"   placeholder="Jumlah Stock"  value=""required/>
-                                                <input type="file" name="file" class="form-control mb-2">
-                                                <button type="submit" class="btn btn-primary mt-4" name="addnewbarang" >Submit</button>
-                                                </div>
-                                                </div>
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                            </div>
-                                        </div>
+                                         
                                         <!-- END Selesai Field Table -->
                                         <!-- Aksi CRUD -->
                                         <!-- Modal stock Gudang -->
@@ -431,4 +364,43 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
     </body>
+    <!-- Modal faktur -->
+        <!-- The  Tambah barang faktur -->
+            <div class="modal fade" id="_1">
+                 <div class="modal-dialog">
+                    <div class="modal-content">
+                    <!-- Modal Header -->
+                     <div class="modal-header">
+                                                <h4 class="modal-title">Tambah Faktur</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <!-- Content 1 -->
+                                                <form method="POST" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                <div class="form-group">
+                                                <select name="fakturnya" class="form-control mb-2">
+                                                <?php
+                                                $ambilsemuadatanya = mysqli_query($conn,"SELECT * FROM sales");
+                                                while($fetcharray = mysqli_fetch_array($ambilsemuadatanya)){
+                                                        $namasupplier = $fetcharray['perusahaan'];
+                                                        $idsales = $fetcharray['idsales'];
+                                                    ?>
+                                                    <option value="<?=$idsales;?>"><?=$namasupplier;?></option> 
+                                                    <?php
+                                                    };
+                                                ?>
+                                                </select>
+                                                <input type="file" name="file" class="form-control mb-2">
+                                                <button type="submit" class="btn btn-primary mt-4" name="faktur">Submit</button>
+                                                </div>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
 </html>

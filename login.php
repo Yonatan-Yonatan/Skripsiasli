@@ -8,6 +8,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $role = $_POST['role'];
+    // die(mysqli_error($conn));
     // Cocokan dengan database, cari data
     $cekdatabase = mysqli_query($conn, "SELECT * FROM login where username='$username' and password='$password'");
     // Hitung jumlah data
@@ -55,7 +56,6 @@ if (isset($_POST['login'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,7 +79,7 @@ if (isset($_POST['login'])) {
                                     <h3 class="text-center font-weight-light my-4">Login</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form method="post">
+                                    <form method="post" action="login2.php">
                                         <div class="form-group">
                                             <label class="small mb-1">Username</label>
                                             <input class="form-control py-4" type="text" placeholder="Username" name="username" required />

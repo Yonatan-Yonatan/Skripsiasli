@@ -132,7 +132,6 @@ if(isset($_POST['addnewbarang'])){
 };
 
 //Menambah Barang Masuk
-
 if(isset($_POST['barangmasuk'])){
     $barangnya = $_POST['barangnya'];
     $penerima = $_POST['penerima'];
@@ -155,8 +154,67 @@ if(isset($_POST['barangmasuk'])){
     } else {
         echo 'gagal';
         header('location:indexx.php');
-    }
+    } 
 }
+
+// Menambah faktur
+if(isset($_POST['faktur'])){
+    $fakturnya = $_POST['fakturnya'];
+    $addtomasuk = mysqli_query($conn,"INSERT INTO faktur where idfaktur='$fakturnya'(supplier) VALUES('$fakturnya')");
+    // // Fungsi Menambah Gambar
+    $allowed_extensions= array('png','jpg');
+    $nama= $_FILES['file']['name']; //gambilnama gambar
+    $dot = explode(".",$nama);
+    $ekstensi = strtolower(end($dot)); //mengambil extensinya
+    $ukuran = $_FILES['file']['size']; //ngambil size filenya
+    $file_tmp= $_FILES['file']['tmp_name']; //ngamil lokasi filenya
+
+    // Penamaan file untuk di encryption
+    $image = md5(uniqid($nama,true)). time().'.'.$ekstensi; //mengabungkan nama file yang di enyrip dnegna ekstensinya
+
+    if($hitung<1){
+    // // Jika belom ada
+    // Proses Upload Gambar
+        if(in_array($ekstensi,$allowed_extensions)===true){
+            // Validasi ukuran file
+            if($ukuran <15000000){
+            move_uploaded_file($file_tmp,'img/'.$image);
+                $addtotable = mysqli_query($conn,"INSERT INTO faktur (supplier,gambar) VALUES ('$fakturnya','$image')");
+            if($addtotable){
+                echo'<script>
+                alert("faktur Sukses Masuk");
+                window.location.href = "faktur.php"
+                </script>';
+             }else{
+                echo'<script>
+                alert("faktur tidak bisa masuk silahkan check lagi");
+                window.location.href = "faktur.php"
+                </script>';
+                }
+            }else{
+                // Jika filenya >= 1,5 mb
+            echo'<script>
+            alert("Ukuranya terlalu besar");
+            window.location.href = "faktur.php"
+            </script>';
+            }
+        } else{
+            // Kalau formatnya bukan PNG
+            echo'<script>
+            alert("Harus  PNG &jpg !!");
+            window.location.href = "faktur.php"
+            </script>';
+        }
+
+    }else{
+        // Jika Sudah ada
+        echo'<script>
+        alert("Nama faktur sudah ada !!");
+        window.location.href = "faktur.php"
+        </script>';
+    }
+    
+};
 
 // if(isset($_POST['daftarbarang'])){
 //     $barangnya = $_POST['barangnya'];
