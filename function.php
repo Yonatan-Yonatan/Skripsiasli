@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Membuat koneksi database
-$conn = mysqli_connect("localhost:3308","root","","db_stockcosmetic");
+$conn = mysqli_connect("localhost:3306","root","","db_stockcosmetic");
 // Registrasi akun Owner
 if(isset($_POST['registrasi'])){
     $email = $_POST['email'];

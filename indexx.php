@@ -1,7 +1,8 @@
 <?php
     include 'function.php';
     include 'cek.php';
-    // session_start();
+    session_start();
+   
    	
 ?>
 <!DOCTYPE html>

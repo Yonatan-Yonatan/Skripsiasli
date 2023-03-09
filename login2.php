@@ -33,7 +33,7 @@ if (mysqli_num_rows($q) == 1) {
     } else if ($_SESSION['role'] == 'manager'){
         header('location:homemanager.php');
     } else if ($_SESSION['role'] == 'kepalagudang'){
-        header('location:kepalagudang.php');
+        header('location:indexx.php');
     }
 
 	
